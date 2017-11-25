@@ -94,7 +94,7 @@ var list = document.querySelectorAll('section.module'),
         });
     }
 	
-	var printStr = '';
+	var printStr = 'mkdir ' + '"' + cource + '";' + '\r\n';
 
     nameKeys.forEach(function(item, idx) {
         var counter = idx + 1;
