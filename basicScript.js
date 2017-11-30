@@ -2,6 +2,19 @@ function getCleanStr(str){
 	return str.replace(/[^\w\s]/gi, '_');
 }
 
+function downloadBatchFile(fileName,fileContent) {
+       var file = "data:text/plain;charset=utf-8,";
+	    var encoded = encodeURIComponent(fileContent);
+	    file += encoded;
+	    var a = document.createElement('a');
+	    a.href = file;
+	    a.target   = '_blank';
+	    a.download = fileName + '.bat';
+	    document.body.appendChild(a);
+	    a.click();
+	    a.remove();
+	}
+
 var cource = getCleanStr(document.getElementById('course-title-link').innerText);
 
 var list = document.querySelectorAll('section.module'),
@@ -80,6 +93,7 @@ var list = document.querySelectorAll('section.module'),
         console.log('Hitted ' + name + ' After ' + hitTime + ' secs');
         startTime = Date.now();
         link.click();
+		link.remove();
     }
 
     if (titleList.length > 0) {
@@ -118,4 +132,6 @@ var list = document.querySelectorAll('section.module'),
         printStr += msg;		
 	});
 	
+
+    downloadBatchFile(cource,printStr);
 	console.log(printStr);
